@@ -1,0 +1,20 @@
+{
+  "name": "parcel-plugin-react-native-web",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-extension-resolver": "https://github.com/GingerBear/babel-plugin-extension-resolver",
+    "babel-plugin-react-native-web": "^0.5.1",
+    "globalrequire": "^1.0.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1"
+  }
+}
