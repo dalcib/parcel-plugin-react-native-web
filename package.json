@@ -1,20 +1,24 @@
 {
   "name": "parcel-plugin-react-native-web",
   "version": "0.1.0",
-  "description": "",
+  "description": "Parcel plugin to build react-native-web projects",
   "main": "index.js",
+  "author": "Dalci de Jesus Bagolin",
+  "license": "MIT",
+  "repository": "github:dalcib/parcel-plugin-react-native-web",
+  "homepage": "https://github.com/dalcib/parcel-plugin-react-native-web#readme",
+  "bugs": "https://github.com/dalcib/parcel-plugin-react-native-web/issues",
+  "keywords": [
+    "parcel-plugin",
+    "react-native-web"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "babel-plugin-extension-resolver": "https://github.com/GingerBear/babel-plugin-extension-resolver",
     "babel-plugin-react-native-web": "^0.5.1",
-    "globalrequire": "^1.0.0",
-    "parcel-bundler": "^1.6.1"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1"
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-native": "^4.0.0",
+    "resolve-global": "^0.1.0"
   }
 }

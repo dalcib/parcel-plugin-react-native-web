@@ -1,24 +1,30 @@
-const JSAsset = require("parcel-bundler/lib/assets/JSAsset");
-const config = require('parcel-bundler/lib/utils/config');
+const resolveGlobal = require('resolve-global')
+const global = resolveGlobal('parcel-bundler')
+const parcel = global ? global.substr(0, global.length - 8) : 'parcel-bundler'
+const JSAsset = require(parcel + 'lib/assets/JSAsset')
+const config = require(parcel + 'lib/utils/config')
 let cwd = process.cwd()
 const appPackage = require(cwd + '/package.json')
 
 async function getBabelConfig() {
-
-  let babelConfig = { presets: ['env', 'react-native'], plugins: ['react-native-web'], internal: false }
+  let babelConfig = {
+    presets: ['env', 'react-native'],
+    plugins: ['react-native-web'],
+    internal: false,
+  }
 
   let rootBabel
   if (appPackage.package && appPackage.package.babel) {
-    rootBabel = appPackage.package.babel;
+    rootBabel = appPackage.package.babel
   } else {
     const conf = await config.resolve(cwd, ['.babelrc', '.babelrc.js'])
     if (conf) {
-      rootBabel = await config.load(cwd, ['.babelrc', '.babelrc.js']);
+      rootBabel = await config.load(cwd, ['.babelrc', '.babelrc.js'])
     }
   }
   if (rootBabel) {
-    babelConfig.presets = (babelConfig.presets).concat(rootBabel.presets || []);
-    babelConfig.plugins = (babelConfig.plugins).concat(rootBabel.plugins || []);
+    babelConfig.presets = babelConfig.presets.concat(rootBabel.presets || [])
+    babelConfig.plugins = babelConfig.plugins.concat(rootBabel.plugins || [])
   }
   return babelConfig
 }
@@ -30,19 +36,20 @@ class RNWAsset extends JSAsset {
     super(name, pkg, options)
 
     const isReactNativeModule =
-      !!((this.package.dependencies && Object.keys(this.package.dependencies).includes('react-native'))
-        || (this.package.devDependencies && Object.keys(this.package.devDependencies).includes('react-native'))
-        || (appPackage.rnw && appPackage.rnw.includes(this.package.name))
-        || !(/node_modules/g.test(this.name))
-      )
-
+      ((this.package.dependencies &&
+        Object.keys(this.package.dependencies).includes('react-native')) ||
+        (this.package.devDependencies &&
+          Object.keys(this.package.devDependencies).includes('react-native')) ||
+        (appPackage.rnw && appPackage.rnw.includes(this.package.name)) ||
+        !/node_modules/g.test(this.name)) &&
+      this.package.name !== 'react-native-web'
 
     if (isReactNativeModule) {
       //console.log(this.name)
       this.babelConfig = babelConfig
     }
   }
-};
+}
 
 module.exports = RNWAsset
 
@@ -89,7 +96,7 @@ async getParserOptions() {
     return babylon.parse(code, options);
   } */
 
-  /* async parse(code) {
+/* async parse(code) {
 
 
     const options = {
