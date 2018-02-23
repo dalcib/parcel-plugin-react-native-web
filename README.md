@@ -1,6 +1,8 @@
-# parcel-plugin-react-native-web
+# parcel-plugin-react-native-web [alpha]
 
 Parcel plugin to build react-native-web projects without configuration.
+
+**_This project is currently at an earlier stage._**
 
 ## Details
 
