@@ -17,6 +17,8 @@ Other babel configurations in package.json or .babelrc will be merged.
 All packages that are dependent of react-native as well the source code of the app will be transpiled with above configuration.
 Other packages can be included to be transpiled using the property `parcel-rnw` in the package.json as an array of modules.
 
+It can be used with global install of Parcel.
+
 ## Use
 
 #### yarn
