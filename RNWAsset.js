@@ -40,7 +40,7 @@ class RNWAsset extends JSAsset {
         Object.keys(this.package.dependencies).includes('react-native')) ||
         (this.package.devDependencies &&
           Object.keys(this.package.devDependencies).includes('react-native')) ||
-        (appPackage.rnw && appPackage.rnw.includes(this.package.name)) ||
+        (appPackage['parcel-rnw'] && appPackage['parcel-rnw'].includes(this.package.name)) ||
         !/node_modules/g.test(this.name)) &&
       this.package.name !== 'react-native-web'
 

@@ -1,6 +1,21 @@
 # parcel-plugin-react-native-web
 
-Parcel plugin to build react-native-web projects.
+Parcel plugin to build react-native-web projects without configuration.
+
+## Details
+
+This plugin uses internaly the follow babel config:
+
+```
+{"presets": "react-native", "plugins": ["react-native-web"]}
+```
+
+Other babel configurations in package.json or .babelrc will be merged.
+
+All packages that are dependent of react-native as well the source code of the app will be transpiled with above configuration.
+Other packages can be included to be transpiled using the property `parcel-rnw` in the package.json as an array of modules.
+
+## Use
 
 #### yarn
 
@@ -18,4 +33,8 @@ npx parcel public/index.html
 npx parcel build src/index.js
 ```
 
-# ==> There is a [PR](https://github.com/parcel-bundler/parcel/pull/880) in Parcel that is needed to this plugin work.
+# ==> There is a [PR](https://github.com/parcel-bundler/parcel/pull/880) in Parcel that is needed to be merged to this plugin work.
+
+```
+
+```
