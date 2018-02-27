@@ -23,7 +23,7 @@ class RNWAsset extends JSAsset {
   } */
 
   async getParserOptions() {
-    this.babelConfig = await babel.getConfig(this)
+    this.babelConfig = await babelTransform.getConfig(this)
 
     const isReactNativeModule =
       (this.package.dependencies &&
