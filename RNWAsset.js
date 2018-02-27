@@ -5,11 +5,11 @@ const babelTransform = require(utils.getParcelPath() + 'lib/transforms/babel')
 let cwd = process.cwd()
 const appPackage = require(cwd + '/package.json')
 
-const rnwBabelConfig = utils.setBabelConfig({
+const rnwBabelConfig = {
   presets: ['env', 'react-native'],
   plugins: ['react-native-web'],
   internal: false,
-})
+}
 
 class RNWAsset extends JSAsset {
   /*   constructor(name, pkg, options) {
@@ -47,4 +47,4 @@ class RNWAsset extends JSAsset {
   }
 }
 
-modules.exports = RNWAsset
+module.exports = RNWAsset
