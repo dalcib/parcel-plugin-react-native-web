@@ -1,60 +1,50 @@
-const resolveGlobal = require('resolve-global')
-const global = resolveGlobal('parcel-bundler')
-const parcel = global ? global.substr(0, global.length - 8) : 'parcel-bundler'
-const JSAsset = require(parcel + 'lib/assets/JSAsset')
-const config = require(parcel + 'lib/utils/config')
+const utils = require('./utils')
+const JSAsset = require(utils.getParcelPath() + 'lib/assets/JSAsset')
+const config = require(utils.getParcelPath() + 'lib/utils/config')
+const babelTransform = require(utils.getParcelPath() + 'lib/transforms/babel')
 let cwd = process.cwd()
 const appPackage = require(cwd + '/package.json')
 
-async function getBabelConfig() {
-  let babelConfig = {
-    presets: ['env', 'react-native'],
-    plugins: ['react-native-web'],
-    internal: false,
-  }
-
-  let rootBabel
-  if (appPackage && appPackage.babel) {
-    rootBabel = appPackage.babel
-  } else {
-    const conf = await config.resolve(cwd, ['.babelrc', '.babelrc.js'])
-    if (conf) {
-      rootBabel = await config.load(cwd, ['.babelrc', '.babelrc.js'])
-    }
-  }
-  if (rootBabel) {
-    babelConfig.presets = babelConfig.presets.concat(rootBabel.presets || [])
-    babelConfig.plugins = babelConfig.plugins.concat(rootBabel.plugins || [])
-  }
-  return babelConfig
-}
-
-let babelConfig /* getBabelConfig() */
-getBabelConfig()
-  .then(config => {
-    babelConfig = config
-  })
-  .catch(error => {
-    console.log(error)
-  })
+const rnwBabelConfig = utils.setBabelConfig({
+  presets: ['env', 'react-native'],
+  plugins: ['react-native-web'],
+  internal: false,
+})
 
 class RNWAsset extends JSAsset {
-  constructor(name, pkg, options) {
+  /*   constructor(name, pkg, options) {
     super(name, pkg, options)
 
+    const config 
+    babelTransform.getConfig(this).then() || { presets: [], plugins: [] }
+    let babelConfig = utils.mergeConfig(config, rnwBabelConfig)
+
+
+  } */
+
+  async getParserOptions() {
+    this.babelConfig = await babel.getConfig(this)
+
     const isReactNativeModule =
-      ((this.package.dependencies &&
-        Object.keys(this.package.dependencies).includes('react-native')) ||
-        (this.package.devDependencies &&
-          Object.keys(this.package.devDependencies).includes('react-native')) ||
-        (appPackage['parcel-rnw'] && appPackage['parcel-rnw'].includes(this.package.name)) ||
-        !/node_modules/g.test(this.name)) &&
-      this.package.name !== 'react-native-web'
+      (this.package.dependencies &&
+        Object.keys(this.package.dependencies).indexOf('react-native') !== -1) ||
+      (this.package.devDependencies &&
+        Object.keys(this.package.devDependencies).indexOf('react-native') !== -1) ||
+      (appPackage['parcel-rnw'] && appPackage['parcel-rnw'].indexOf(this.package.name) !== -1) ||
+      (appPackage['parcel-rnw'] && appPackage['parcel-rnw'][this.package.name]) ||
+      !/node_modules/g.test(this.name)
 
     if (isReactNativeModule) {
-      this.babelConfig = babelConfig
+      if (appPackage['parcel-rnw'] && appPackage['parcel-rnw'][this.package.name]) {
+        const pkgBabelConfig =
+          appPackage['parcel-rnw'] && appPackage['parcel-rnw'][this.package.name]
+        babelConfig = utils.mergeConfig(babelConfig, pkgBabelConfig)
+      }
+      this.babelConfig = utils.mergeConfig(this.babelConfig, rnwBabelConfig)
     }
+
+    await super.getParserOptions()
   }
 }
 
-module.exports = RNWAsset
+modules.exports = RNWAsset
