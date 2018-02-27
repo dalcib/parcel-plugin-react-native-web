@@ -23,8 +23,6 @@ class RNWAsset extends JSAsset {
   } */
 
   async getParserOptions() {
-    this.babelConfig = await babelTransform.getConfig(this)
-
     const isReactNativeModule =
       (this.package.dependencies &&
         Object.keys(this.package.dependencies).indexOf('react-native') !== -1) ||
@@ -35,12 +33,13 @@ class RNWAsset extends JSAsset {
       !/node_modules/g.test(this.name)
 
     if (isReactNativeModule) {
+      this.babelConfig = await babelTransform.getConfig(this)
       if (appPackage['parcel-rnw'] && appPackage['parcel-rnw'][this.package.name]) {
         const pkgBabelConfig =
           appPackage['parcel-rnw'] && appPackage['parcel-rnw'][this.package.name]
-        babelConfig = utils.mergeConfig(babelConfig, pkgBabelConfig)
+        babelConfig = utils.mergeConfigs(this.babelConfig, pkgBabelConfig)
       }
-      this.babelConfig = utils.mergeConfig(this.babelConfig, rnwBabelConfig)
+      this.babelConfig = utils.mergeConfigs(this.babelConfig, rnwBabelConfig)
     }
 
     await super.getParserOptions()

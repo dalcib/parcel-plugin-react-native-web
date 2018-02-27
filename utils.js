@@ -21,10 +21,13 @@ exports.getParcelPath = function() {
   return config
 } */
 
-exports.mergeConfig = function(configA, configB) {
-  configA.presets = configA.presets.concat(configB.presets || [])
-  configA.plugins = configA.plugins.concat(configB.plugins || [])
-  return configA
+function mergeConfigs(a, b) {
+  if (b) {
+    a.presets = (a.presets || []).concat(b.presets || [])
+    a.plugins = (a.plugins || []).concat(b.plugins || [])
+  }
+
+  return a
 }
 
 /* exports.setBabelConfig = function(config) {
