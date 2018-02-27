@@ -27,7 +27,7 @@ exports.mergeConfig = function(configA, configB) {
   return configA
 }
 
-exports.setBabelConfig = function(config) {
+/* exports.setBabelConfig = function(config) {
   getBabelConfig(config)
     .then(config => {
       babelConfig = config
@@ -35,4 +35,4 @@ exports.setBabelConfig = function(config) {
     .catch(error => {
       console.log(error)
     })
-}
+} */
