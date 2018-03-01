@@ -7,7 +7,6 @@ function getParcelPath() {
   const globalPath = resolveGlobal.silent('parcel-bundler')
   return globalPath ? globalPath.substr(0, globalPath.length - 8) : 'parcel-bundler'
 }
-
 exports.getParcelPath = getParcelPath
 
 exports.mergeConfigs = function(a, b) {
@@ -16,7 +15,6 @@ exports.mergeConfigs = function(a, b) {
     a.presets = (a.presets || []).concat(b.presets || [])
     a.plugins = (a.plugins || []).concat(b.plugins || [])
   }
-
   return a
 }
 
@@ -28,6 +26,29 @@ exports.setBabelConfig = function(babelConfig) {
     .catch(error => {
       console.log(error)
     })
+}
+
+exports.getPkgConfig = function(name) {
+  const parcelRnw = appPackage['parcel-rnw']
+  if (parcelRnw) {
+    parcelRnw.map((module, index) => {
+      if (name === 'react-native-md-textinput') {
+        console.log('taatatatttatatatatataatatta', name)
+      }
+      if (typeof module === 'string') {
+        if (module === name) {
+          console.log('mmmmmmm', name)
+          return true
+        }
+      } else {
+        if (Object.keys(module)[0] === name) {
+          console.log('gggggggg', name, module)
+          return module
+        }
+      }
+    })
+  }
+  return false
 }
 
 //const uniqueElements = arr => [...new Set(arr)]
