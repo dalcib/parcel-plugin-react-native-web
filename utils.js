@@ -1,27 +1,17 @@
 const resolveGlobal = require('resolve-global')
+const config = require(getParcelPath() + 'lib/transforms/babel').getConfig
+let cwd = process.cwd()
+const appPackage = require(cwd + '/package.json')
 
-exports.getParcelPath = function() {
+function getParcelPath() {
   const globalPath = resolveGlobal.silent('parcel-bundler')
   return globalPath ? globalPath.substr(0, globalPath.length - 8) : 'parcel-bundler'
 }
 
-/* async function getBabelConfig(config) {
-  let rootBabel
-  if (appPackage && appPackage.babel) {
-    rootBabel = appPackage.babel
-  } else {
-    const conf = await config.resolve(cwd, ['.babelrc', '.babelrc.js'])
-    if (conf) {
-      rootBabel = await config.load(cwd, ['.babelrc', '.babelrc.js'])
-    }
-  }
-  if (rootBabel) {
-    config = mergeConfig(config, rootBabel)
-  }
-  return config
-} */
+exports.getParcelPath = getParcelPath
 
-function mergeConfigs(a, b) {
+exports.mergeConfigs = function(a, b) {
+  if (!a) return b
   if (b) {
     a.presets = (a.presets || []).concat(b.presets || [])
     a.plugins = (a.plugins || []).concat(b.plugins || [])
@@ -30,12 +20,64 @@ function mergeConfigs(a, b) {
   return a
 }
 
-/* exports.setBabelConfig = function(config) {
-  getBabelConfig(config)
+exports.setBabelConfig = function(babelConfig) {
+  config(babelConfig)
     .then(config => {
-      babelConfig = config
+      return config
     })
     .catch(error => {
       console.log(error)
     })
+}
+
+//const uniqueElements = arr => [...new Set(arr)]
+
+/* function uniquePreset(config) {
+  config.presets = uniqueElements(config.presets)
+  config.plugins = uniqueElements(config.plugins)
+}
+
+const uniqueElements = function(arr) {
+  const o = {}
+  let i
+  if (arr) {
+    const l = arr.length
+    const r = []
+    for (i = 0; i < l; i += 1) {
+      o[JSON.stringify(arr[i])] = arr[i]
+    }
+    Object.keys(o).forEach(index => {
+      r.push(o[index])
+    })
+    return r
+  }
 } */
+
+/* async function getBabelrc() {
+  const conf = await config.resolve(cwd, ['.babelrc', '.babelrc.js'])
+  if (conf) {
+    return await config.load(cwd, ['.babelrc', '.babelrc.js'])
+  }
+}
+
+let appBabelConfig = null
+
+var Singleton = (function getAppBabelConfig() {
+  console.log(config, 'yyyyyyyyyyyyyyy')
+  if (!appBabelConfig) {
+    if (appPackage && appPackage.babel) {
+      appBabelConfig = appPackage.babel
+    } else {
+      getBabelrc()
+        .then(config => {
+          console.log(config, 'ooooooooooooooo')
+          appBabelConfig = config
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
+})()
+
+exports.appBabelConfig = appBabelConfig */
