@@ -15,7 +15,7 @@ exports.mergeConfigs = function(a, b) {
     a.presets = (a.presets || []).concat(b.presets || [])
     a.plugins = (a.plugins || []).concat(b.plugins || [])
   }
-  return a
+  return uniquePreset(a)
 }
 
 exports.setBabelConfig = function(babelConfig) {
@@ -31,74 +31,22 @@ exports.setBabelConfig = function(babelConfig) {
 exports.getPkgConfig = function(name) {
   const parcelRnw = appPackage['parcel-rnw']
   if (parcelRnw) {
-    parcelRnw.map((module, index) => {
-      if (name === 'react-native-md-textinput') {
-        console.log('taatatatttatatatatataatatta', name)
+    const module = parcelRnw.find(module => module === name || Object.keys(module)[0] === name)
+    if (typeof module === 'string') {
+      return true
+    } else {
+      if (module) {
+        return module
       }
-      if (typeof module === 'string') {
-        if (module === name) {
-          console.log('mmmmmmm', name)
-          return true
-        }
-      } else {
-        if (Object.keys(module)[0] === name) {
-          console.log('gggggggg', name, module)
-          return module
-        }
-      }
-    })
+    }
   }
   return false
 }
 
-//const uniqueElements = arr => [...new Set(arr)]
+const uniqueElements = arr => [...new Set(arr)]
 
-/* function uniquePreset(config) {
+function uniquePreset(config) {
   config.presets = uniqueElements(config.presets)
   config.plugins = uniqueElements(config.plugins)
+  return config
 }
-
-const uniqueElements = function(arr) {
-  const o = {}
-  let i
-  if (arr) {
-    const l = arr.length
-    const r = []
-    for (i = 0; i < l; i += 1) {
-      o[JSON.stringify(arr[i])] = arr[i]
-    }
-    Object.keys(o).forEach(index => {
-      r.push(o[index])
-    })
-    return r
-  }
-} */
-
-/* async function getBabelrc() {
-  const conf = await config.resolve(cwd, ['.babelrc', '.babelrc.js'])
-  if (conf) {
-    return await config.load(cwd, ['.babelrc', '.babelrc.js'])
-  }
-}
-
-let appBabelConfig = null
-
-var Singleton = (function getAppBabelConfig() {
-  console.log(config, 'yyyyyyyyyyyyyyy')
-  if (!appBabelConfig) {
-    if (appPackage && appPackage.babel) {
-      appBabelConfig = appPackage.babel
-    } else {
-      getBabelrc()
-        .then(config => {
-          console.log(config, 'ooooooooooooooo')
-          appBabelConfig = config
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
-  }
-})()
-
-exports.appBabelConfig = appBabelConfig */
