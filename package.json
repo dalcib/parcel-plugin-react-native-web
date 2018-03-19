@@ -16,9 +16,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "babel-plugin-react-native-web": "^0.5.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react-native": "^4.0.0",
+    "babel-preset-react-native-web-expo": "^0.1.0",
     "resolve-global": "^0.1.0"
   }
 }

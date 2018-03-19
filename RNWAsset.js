@@ -2,8 +2,7 @@ const utils = require('./utils')
 const JSAsset = require(utils.getParcelPath() + 'lib/assets/JSAsset')
 
 const rnwBabelConfig = {
-  presets: ['env', 'react-native'],
-  plugins: ['react-native-web'],
+  presets: ['react-native-web-expo'],
   internal: false,
 }
 
@@ -29,11 +28,3 @@ class RNWAsset extends JSAsset {
 }
 
 module.exports = RNWAsset
-
-/* if (
-  this.name ===
-  'C:\\Users\\dalci\\playground\\react-native-material-ui-web-app\\node_modules\\react-vector-icons\\lib\\create-icon-set.js'
-) {
-  console.log(this.name, isReactNativeModule, this.babelConfig)
-  setTimeout(function() {}, 10000)
-} */
