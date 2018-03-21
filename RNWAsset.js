@@ -1,10 +1,12 @@
 const utils = require('./utils')
 const JSAsset = require(utils.getParcelPath() + 'lib/assets/JSAsset')
+const preset = require('./preset')
 
-const rnwBabelConfig = {
+const rnwBabelConfig = preset
+/* {
   presets: ['react-native-web-expo'],
   internal: false,
-}
+} */
 
 class RNWAsset extends JSAsset {
   constructor(name, pkg, options) {
@@ -15,6 +17,8 @@ class RNWAsset extends JSAsset {
     const isReactNativeModule =
       !!(this.package.dependencies && this.package.dependencies['react-native']) ||
       !!(this.package.devDependencies && this.package.devDependencies['react-native']) ||
+      !!(this.package.peerDependencies && this.package.peerDependencies['react-native']) ||
+      !!this.basename.match(/react-native-vector-icons/g) ||
       !!pkgBabelConfig ||
       !/node_modules/g.test(this.name)
 

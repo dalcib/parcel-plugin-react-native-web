@@ -8,15 +8,30 @@
   "repository": "github:dalcib/parcel-plugin-react-native-web",
   "homepage": "https://github.com/dalcib/parcel-plugin-react-native-web#readme",
   "bugs": "https://github.com/dalcib/parcel-plugin-react-native-web/issues",
-  "keywords": [
-    "parcel-plugin",
-    "react-native-web"
-  ],
+  "keywords": ["parcel-plugin", "react-native-web"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "babel-plugin-extension-resolver-web": "^0.2.0",
     "babel-preset-react-native-web-expo": "^0.1.0",
+    "babel-plugin-expo-web": "^0.0.12",
+    "babel-plugin-react-native-web": "^0.5.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-native": "^4.0.0",
     "resolve-global": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "jest": "jest"
+  },
+  "peerDependencies": {
+    "expo-web": "0.x.x",
+    "react": "16.x.x",
+    "react-dom": "16.x.x",
+    "react-native-web": "0.x.x"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/__tests__/samples/"]
   }
 }
