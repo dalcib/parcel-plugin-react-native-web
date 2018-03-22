@@ -5,7 +5,7 @@ module.exports = {
     'extension-resolver-web',
     'expo-web',
     'react-native-web',
-    'dev-expression',
+    'transform-dev',
     /*     
     'transform-decorators-legacy',
     'transform-exponentiation-operator',
