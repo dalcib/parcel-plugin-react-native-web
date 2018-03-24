@@ -2,17 +2,31 @@ const resolve = require('resolve')
 const path = require('path')
 const fs = require('fs')
 
+function hasExpoWeb() {
+  try {
+    resolve.sync('expo-web')
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
 function resolvePath(sourcePath, currentFile, opts) {
-  if (sourcePath.match(/(react-native-vector-icons|@expo\/vector-icons)/g)) {
-    try {
-      resolve.sync('expo-web')
-    } catch (error) {
-      return sourcePath
-    }
-    return sourcePath.replace(/(react-native-vector-icons|@expo\/vector-icons)/g, 'expo-web')
+  if (sourcePath.match(/(react-native-vector-icons)/g)) {
+    return hasExpoWeb
+      ? sourcePath.replace(/(react-native-vector-icons)/g, 'expo-web/dist/exports')
+      : sourcePath
   }
 
-  if (sourcePath.match(/(react|react-dom|react-native|expo|react-navigation)/g)) {
+  if (sourcePath.match(/(@expo\/vector-icons|^expo)/g)) {
+    return hasExpoWeb ? sourcePath.replace(/(@expo\/vector-icons|^expo)/g, 'expo-web') : sourcePath
+  }
+
+  /*   if (sourcePath.match(/()/g)) {
+    return hasExpoWeb ? sourcePath.replace(/(^expo)/g, 'expo-web') : sourcePath
+  } */
+
+  if (sourcePath.match(/(react|react-dom|react-native|react-navigation)/g)) {
     return sourcePath
   }
 
