@@ -36,9 +36,3 @@ npm i parcel-bundler parcel-plugin-react-native-web
 npx parcel public/index.html
 npx parcel build src/index.js
 ```
-
-# ==> There is a [PR](https://github.com/parcel-bundler/parcel/pull/880) in Parcel that is needed to be merged to this plugin work.
-
-```
-
-```
