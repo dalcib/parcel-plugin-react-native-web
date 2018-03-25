@@ -1,0 +1,1 @@
+exports = 'module.web.js'

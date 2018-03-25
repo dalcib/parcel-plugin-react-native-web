@@ -1,0 +1,1 @@
+exports = 'comp-index.js'
