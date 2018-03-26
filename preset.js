@@ -6,8 +6,7 @@ module.exports = {
   //internal: false
   presets: ['env', 'react-native'],
   plugins: [
-    'extension-resolver-web',
-    [
+    /*     [
       'module-resolver',
       {
         alias: {
@@ -17,9 +16,10 @@ module.exports = {
           expo: 'expo-web',
         },
       },
-    ],
-    'expo-web',
+    ], */
     'react-native-web',
+    'expo-web',
+    //'extension-resolver-web',
     'transform-dev',
     /* for preset-expo compatibility    
     'transform-decorators-legacy',

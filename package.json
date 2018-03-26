@@ -31,8 +31,10 @@
     "expo-web": "^0.0.13",
     "jest": "jest",
     "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-native-safe-area-view": "^0.7.0",
-    "react-native-tab-view": "^0.0.75"
+    "react-native-tab-view": "^0.0.75",
+    "react-native-web": "^0.5.3"
   },
   "peerDependencies": {
     "expo-web": "0.x.x",

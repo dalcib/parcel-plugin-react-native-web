@@ -25,3 +25,21 @@ require('expo-web');"
 `;
 
 exports[`replace __DEV__ 1`] = `"\\"use strict\\";true;"`;
+
+exports[`web extension local file 1`] = `
+"'use strict';
+require('C:\\\\\\\\Users\\\\\\\\dalci\\\\\\\\playground\\\\\\\\parcel-plugin-react-native-web\\\\\\\\tests\\\\\\\\module.web.js');
+require('./tests/module');
+
+imposter.require('./tests/module');
+imposter.import('./tests/module');"
+`;
+
+exports[`web extension local folder 1`] = `
+"'use strict';
+require('C:\\\\\\\\Users\\\\\\\\dalci\\\\\\\\playground\\\\\\\\parcel-plugin-react-native-web\\\\\\\\tests\\\\\\\\comp\\\\\\\\index.web.js');
+require('./tests/comp');
+
+imposter.require('./tests/comp');
+imposter.import('./tests/comp');"
+`;
