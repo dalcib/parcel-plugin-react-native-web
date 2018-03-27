@@ -14,6 +14,18 @@
         "PARCEL_WORKERS": "0"
       },
       "args": ["build", "--no-cache", "C:\\Users\\Dalci\\Playground\\xxx"]
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:1234",
+      "trace": true,
+      "webRoot": "${workspaceFolder}",
+      "breakOnLoad": true,
+      "sourceMapPathOverrides": {
+        "*": "${webRoot}/public/*"
+      }
     }
   ]
 }

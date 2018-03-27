@@ -2,27 +2,22 @@
   "name": "parcel-plugin-react-native-web",
   "version": "0.5.3",
   "description": "Parcel plugin to build react-native-web projects",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Dalci de Jesus Bagolin",
   "license": "MIT",
   "repository": "github:dalcib/parcel-plugin-react-native-web",
   "homepage": "https://github.com/dalcib/parcel-plugin-react-native-web#readme",
   "bugs": "https://github.com/dalcib/parcel-plugin-react-native-web/issues",
-  "keywords": [
-    "parcel-plugin",
-    "react-native-web"
-  ],
+  "keywords": ["parcel-plugin", "react-native-web"],
   "scripts": {
     "test": "jest --watchAll"
   },
   "dependencies": {
     "babel-plugin-expo-web": "^0.0.12",
-    "babel-plugin-extension-resolver-web": "^0.2.1",
     "babel-plugin-react-native-web": "^0.5.3",
     "babel-plugin-transform-dev": "^2.0.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react-native": "^4.0.0",
-    "babel-preset-react-native-web-expo": "^0.1.0",
     "resolve": "^1.6.0",
     "resolve-global": "^0.1.0"
   },
@@ -37,15 +32,11 @@
     "react-native-web": "^0.5.3"
   },
   "peerDependencies": {
-    "expo-web": "0.x.x",
     "react": "16.x.x",
     "react-dom": "16.x.x",
     "react-native-web": "0.x.x"
   },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/__tests__/samples/"
-    ]
+  "optionalDependencies": {
+    "expo-web": "0.x.x"
   }
 }

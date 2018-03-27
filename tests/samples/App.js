@@ -1,10 +1,11 @@
 import { AppLoading, Asset } from 'expo'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-//import { connect } from 'react-redux';
+import { StyleSheet, View, Text } from 'react-native'
+import { TabViewPagerAndroid } from 'react-native-tab-view'
+import SafeAreaView from 'react-native-safe-area-view'
 import { Ionicons } from '@expo/vector-icons'
+import Expo, { KeepAwake } from 'expo'
 
-//@connect()
 export default class App extends React.Component {
   state = { assetsAreLoaded: false }
 
@@ -18,6 +19,9 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
+          <Text>Open up src/App.js to start working on your app!</Text>
+          <Text>Changes you make will automatically reload.</Text>
+          <Text>Shake your phone to open the developer menu.</Text>
           <Ionicons name="md-options" size={28} />
         </View>
       )
@@ -43,5 +47,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
