@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const resolve = require('resolve')
 
-const preset = require('./../preset')
+const preset = require('./../lib/preset')
 
 it('hasExpoWeb', () => {
   expect(!!resolve.sync('expo-web')).toBeTruthy()
