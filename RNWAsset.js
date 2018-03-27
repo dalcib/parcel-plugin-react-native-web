@@ -18,7 +18,7 @@ class RNWAsset extends JSAsset {
       !!(this.package.dependencies && this.package.dependencies['react-native']) ||
       !!(this.package.devDependencies && this.package.devDependencies['react-native']) ||
       !!(this.package.peerDependencies && this.package.peerDependencies['react-native']) ||
-      !!this.basename.match(/react-native-vector-icons/g) ||
+      !!(this.package.keywords && this.package.keywords.indexOf('react-native') !== -1) ||
       !!pkgBabelConfig ||
       !/node_modules/g.test(this.name)
 

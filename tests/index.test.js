@@ -1,8 +1,13 @@
 const babel = require('babel-core')
 const fs = require('fs')
 const path = require('path')
+const resolve = require('resolve')
 
-const preset = require('..')
+const preset = require('./../preset')
+
+it('hasExpoWeb', () => {
+  expect(!!resolve.sync('expo-web')).toBeTruthy()
+})
 
 it(`compiles sample files`, () => {
   let options = {
@@ -23,7 +28,7 @@ it(`compiles sample files`, () => {
   }
 })
 
-it(`aliases react-native-vector-icons`, () => {
+xit(`aliases react-native-vector-icons`, () => {
   let options = {
     babelrc: false,
     presets: [preset],
@@ -41,11 +46,11 @@ imposter.import('react-native-vector-icons');
   let { code } = babel.transform(sourceCode, options)
 
   //expect(code).toMatch(/'@expo\/vector-icons'/);
-  expect(code).toMatch(/'expo-web'/)
+  expect(code).toMatch(/expo-web/)
   expect(code).toMatchSnapshot()
 })
 
-it(`aliases @expo/vector-icons`, () => {
+xit(`aliases @expo/vector-icons`, () => {
   let options = {
     babelrc: false,
     presets: [preset],
@@ -63,7 +68,7 @@ imposter.import('@expo/vector-icons');
   let { code } = babel.transform(sourceCode, options)
 
   //expect(code).toMatch(/'@expo\/vector-icons'/);
-  expect(code).toMatch(/'expo-web'/)
+  expect(code).toMatch(/expo-web/)
   expect(code).toMatchSnapshot()
 })
 
@@ -71,26 +76,18 @@ it(`composes with babel-plugin-module-resolver`, () => {
   let options = {
     babelrc: false,
     presets: [preset],
-    plugins: [
-      [
-        'module-resolver',
-        {
-          alias: { 'react-native': '@expo/react-native' },
-        },
-      ],
-    ],
     // Make the snapshot easier to read
     retainLines: true,
   }
 
   let sourceCode = `
 import 'react-native';
-import 'react-native-vector-icons';
+import 'expo';
 `
   let { code } = babel.transform(sourceCode, options)
 
-  expect(code).toMatch(/'@expo\/react-native'/)
-  expect(code).toMatch(/'expo-web'/)
+  //expect(code).toMatch(/expo-web/)
+  expect(code).toMatch(/react-native-web/)
   expect(code).toMatchSnapshot()
 })
 
@@ -104,5 +101,45 @@ it('replace __DEV__', () => {
   let sourceCode = '(__DEV__)'
   let { code } = babel.transform(sourceCode, options)
 
+  expect(code).toMatchSnapshot()
+})
+
+it('web extension local file', () => {
+  let options = {
+    babelrc: false,
+    presets: [preset], // Make the snapshot easier to read
+    retainLines: true,
+  }
+
+  let sourceCode = `
+import './tests/module';
+require('./tests/module');
+
+imposter.require('./tests/module');
+imposter.import('./tests/module');
+`
+  let { code } = babel.transform(sourceCode, options)
+
+  expect(code).toMatch(/\.web\.js/)
+  expect(code).toMatchSnapshot()
+})
+
+it('web extension local folder', () => {
+  let options = {
+    babelrc: false,
+    presets: [preset], // Make the snapshot easier to read
+    retainLines: true,
+  }
+
+  let sourceCode = `
+import './tests/comp';
+require('./tests/comp');
+
+imposter.require('./tests/comp');
+imposter.import('./tests/comp');
+`
+  let { code } = babel.transform(sourceCode, options)
+
+  expect(code).toMatch(/\.web\.js/)
   expect(code).toMatchSnapshot()
 })

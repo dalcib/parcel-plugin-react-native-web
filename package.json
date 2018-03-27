@@ -13,7 +13,7 @@
     "react-native-web"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "babel-plugin-expo-web": "^0.0.12",
@@ -23,11 +23,18 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react-native": "^4.0.0",
     "babel-preset-react-native-web-expo": "^0.1.0",
+    "resolve": "^1.6.0",
     "resolve-global": "^0.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "jest": "jest"
+    "expo-web": "^0.0.13",
+    "jest": "jest",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-native-safe-area-view": "^0.7.0",
+    "react-native-tab-view": "^0.0.75",
+    "react-native-web": "^0.5.3"
   },
   "peerDependencies": {
     "expo-web": "0.x.x",
