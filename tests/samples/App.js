@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import { TabViewPagerAndroid } from 'react-native-tab-view'
 import SafeAreaView from 'react-native-safe-area-view'
 import { Ionicons } from '@expo/vector-icons'
-import Expo, { KeepAwake } from 'expo'
+//import Expo, { KeepAwake } from 'expo'
 
 export default class App extends React.Component {
   state = { assetsAreLoaded: false }

@@ -5,8 +5,8 @@ const resolve = require('resolve')
 
 const preset = require('./../lib/preset')
 
-it('hasExpoWeb', () => {
-  expect(!!resolve.sync('expo-web')).toBeTruthy()
+xit('hasExpoWeb', () => {
+  expect(!!resolve.sync('expo-web', '..')).toBeTruthy()
 })
 
 it(`compiles sample files`, () => {

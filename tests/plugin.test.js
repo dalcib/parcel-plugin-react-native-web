@@ -25,7 +25,7 @@ describe('#transform', () => {
   let bundler = new Bundler(inputPath, {
     watch: false,
   })
-  pugin(bundler)
+  plugin(bundler)
 
   it('should transform the jsx in input.js', async () => {
     expect.assertions(1)

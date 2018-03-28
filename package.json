@@ -35,8 +35,5 @@
     "react": "16.x.x",
     "react-dom": "16.x.x",
     "react-native-web": "0.x.x"
-  },
-  "optionalDependencies": {
-    "expo-web": "0.x.x"
   }
 }
