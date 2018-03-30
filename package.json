@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-react-native-web",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Parcel plugin to build react-native-web projects",
   "main": "lib/index.js",
   "author": "Dalci de Jesus Bagolin",
@@ -8,7 +8,10 @@
   "repository": "github:dalcib/parcel-plugin-react-native-web",
   "homepage": "https://github.com/dalcib/parcel-plugin-react-native-web#readme",
   "bugs": "https://github.com/dalcib/parcel-plugin-react-native-web/issues",
-  "keywords": ["parcel-plugin", "react-native-web"],
+  "keywords": [
+    "parcel-plugin",
+    "react-native-web"
+  ],
   "scripts": {
     "test": "node test/index.js"
   },
