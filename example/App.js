@@ -1,12 +1,24 @@
-import { AppLoading, Asset } from 'expo'
+//import { AppLoading, Asset } from 'expo'
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, AppRegistry } from 'react-native'
 import { TabViewPagerAndroid } from 'react-native-tab-view'
 import SafeAreaView from 'react-native-safe-area-view'
 import { Ionicons } from '@expo/vector-icons'
-//import Expo, { KeepAwake } from 'expo'
+/*import ModuleX from './moduleX'
+import mod from './comp' */
 
-export default class App extends React.Component {
+const App = () => (
+  <View style={styles.container}>
+    <Text>Open up src/App.js to start working on your app!</Text>
+    <Text>Changes you make will automatically reload.</Text>
+    <Text>Shake your phone to open the developer menu.</Text>
+    {/* <Ionicons name="md-options" size={28} /> */}
+  </View>
+)
+
+export default App
+
+/* export default class App extends React.Component {
   state = { assetsAreLoaded: false }
 
   componentDidMount() {
@@ -22,7 +34,7 @@ export default class App extends React.Component {
           <Text>Open up src/App.js to start working on your app!</Text>
           <Text>Changes you make will automatically reload.</Text>
           <Text>Shake your phone to open the developer menu.</Text>
-          <Ionicons name="md-options" size={28} />
+          <Ionicons name="md-options" size={28} /> 
         </View>
       )
     }
@@ -30,7 +42,7 @@ export default class App extends React.Component {
 
   async _loadAssetsAsync() {
     try {
-      await Asset.loadAsync([require('./assets/icon.png')])
+      await Asset.loadAsync([require('./expo-icon.png')])
     } finally {
       this.setState({ assetsAreLoaded: true })
     }
@@ -42,7 +54,7 @@ export default class App extends React.Component {
       console.log(item)
     }
   }
-}
+}*/
 
 const styles = StyleSheet.create({
   container: {
@@ -51,4 +63,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+})
+
+AppRegistry.registerComponent('App', () => App)
+AppRegistry.runApplication('App', {
+  rootTag: document.getElementById('root'),
 })

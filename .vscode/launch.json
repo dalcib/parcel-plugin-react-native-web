@@ -9,11 +9,10 @@
       "request": "launch",
       "name": "Debug App",
       "program":
-        "C:\\Users\\Dalci\\AppData\\Local\\Yarn\\config\\global\\node_modules\\parcel-bundler\\bin\\cli.js",
-      "env": {
-        "PARCEL_WORKERS": "0"
-      },
-      "args": ["build", "--no-cache", "C:\\Users\\Dalci\\Playground\\xxx"]
+        //"C:\\Users\\USER\\AppData\\Local\\Yarn\\config\\global\\node_modules\\parcel-bundler\\bin\\cli.js",
+        "${workspaceFolder}/node_modules/.bin/parcel.js",
+      "env": { "PARCEL_WORKERS": "0" },
+      "args": ["build", "--no-cache", "C:\\Users\\USER\\xxx"]
     },
     {
       "type": "chrome",

@@ -1,0 +1,20 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {
+    "expo-web": "^0.0.13",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-native-safe-area-view": "^0.7.0",
+    "react-native-tab-view": "^0.0.75",
+    "react-native-web": "^0.5.3"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0"
+  },
+  "alias": {
+    "expo": "expo-web",
+    "@expo/vector-icons": "expo-web"
+  }
+}
