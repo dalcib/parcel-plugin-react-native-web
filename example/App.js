@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, AppRegistry } from 'react-native'
 import { TabViewPagerAndroid } from 'react-native-tab-view'
 import SafeAreaView from 'react-native-safe-area-view'
 import { Ionicons } from '@expo/vector-icons'
-/*import ModuleX from './moduleX'
+/*  import ModuleX from './moduleX'
 import mod from './comp' */
 
 const App = () => (

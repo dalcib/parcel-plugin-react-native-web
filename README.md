@@ -135,3 +135,7 @@ The [`expo-web`](https://github.com/raarts/expo-web) library is in an earlier st
   "react-native-vector-icons": "expo-web/dist/exports"
 }
 ```
+
+## Examples
+[react-native-material-ui-web-app](https://github.com/dalcib/react-native-material-ui-web-app)
+[expo-react-native-web](https://github.com/dalcib/expo-react-native-web)
