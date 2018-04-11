@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-react-native-web",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Parcel plugin to build react-native-web projects",
   "main": "lib/index.js",
   "author": "Dalci de Jesus Bagolin",
