@@ -8,7 +8,7 @@ Parcel plugin to build react-native-web projects without configuration.
 
 ```
 yarn [global] add parcel-bundler       // Install Parccel (local or global)
-yarn parcel-plugin-react-native-web    // Install the plugin
+yarn add parcel-plugin-react-native-web    // Install the plugin
 yarn parcel public/index.html          // Run the server or
 yarn parcel build src/index.js         // Compile the App
 ```
